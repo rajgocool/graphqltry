@@ -29,7 +29,14 @@ public class SearchQueryBuilder {
                 ).should(QueryBuilders.queryStringQuery("*" + text + "*")
                         .lenient(true)
                         .field("name")
-                        .field("teamName"));
+                        .field("teamName"))
+                .should(QueryBuilders.nestedQuery("salary", QueryBuilders.boolQuery()
+                        .should(
+                            QueryBuilders.queryStringQuery(text)
+                                .lenient(true)
+                                .field("salary"))
+                ));
+
 
         NativeSearchQuery build = new NativeSearchQueryBuilder()
                 .withQuery(query)

@@ -19,6 +19,8 @@ public class ManualSearchResource {
 
     @GetMapping(value = "/{text}")
     public List<Users> getAll(@PathVariable final String text) {
-        return searchQueryBuilder.getAll(text);
+        List<Users> all = searchQueryBuilder.getAll(text);
+        System.out.println(all);
+        return all;
     }
 }

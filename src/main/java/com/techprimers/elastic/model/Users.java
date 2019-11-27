@@ -1,14 +1,35 @@
 package com.techprimers.elastic.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
-@Document(indexName = "users", type = "users", shards = 1)
+@Document(indexName = "user", type = "users", shards = 1)
 public class Users {
 
     private String name;
     private Long id;
     private String teamName;
-    private Long salary;
+
+//    @Field(type = FieldType.Nested, includeInParent = true)
+    @Autowired
+    private Salary salary;
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                ", teamName='" + teamName + '\'' +
+                ", salary=" + salary +
+                '}';
+    }
+    //private Long salary;
+
+    public void setSalary(Salary salary) {
+        this.salary = salary;
+    }
 
     public String getName() {
         return name;
@@ -34,15 +55,12 @@ public class Users {
         this.teamName = teamName;
     }
 
-    public Long getSalary() {
+    public Salary getSalary() {
         return salary;
     }
 
-    public void setSalary(Long salary) {
-        this.salary = salary;
-    }
 
-    public Users(String name, Long id, String teamName, Long salary) {
+    public Users(String name, Long id, String teamName, Salary salary) {
 
         this.name = name;
         this.id = id;

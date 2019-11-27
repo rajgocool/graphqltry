@@ -24,10 +24,10 @@ public class SearchResource {
     }
 
 
-    @GetMapping(value = "/salary/{salary}")
-    public List<Users> searchSalary(@PathVariable final Long salary) {
-        return usersRepository.findBySalary(salary);
-    }
+//    @GetMapping(value = "/salary/{salary}")
+//    public List<Users> searchSalary(@PathVariable final Long salary) {
+//        return usersRepository.findBySalary(salary);
+//    }
 
 
     @GetMapping(value = "/all")
